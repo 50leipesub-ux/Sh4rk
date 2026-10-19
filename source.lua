@@ -5,15 +5,15 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local Window = Rayfield:CreateWindow({
-   Name = "Kukirin Life Hub - Ultimate Edition",
-   LoadingTitle = "Loading Kukirin Life...",
-   LoadingSubtitle = "by Custom Script",
+   Name = "Sh4rk Script ",
+   LoadingTitle = "Loading Script",
+   LoadingSubtitle = "by Sh4ark Scripts",
    ConfigurationSaving = { Enabled = false },
    
    -- DISCORD BOT KEY SYSTEM CONFIGURATION
    KeySystem = false,
    
-   Theme = "Ocean"
+   Theme = "Amethyst"
 })
 
 -- =========================================
@@ -27,7 +27,6 @@ local MiscTab = Window:CreateTab("Misc & Utility", 4483362458)
 -- =========================================
 local autoWheelieActive = false
 local burnoutActive = false
-local autoFlipActive = false
 local stuntFarmActive = false
 
 -- Auto Wheelie Logic
@@ -95,31 +94,6 @@ MainTab:CreateToggle({
    end,
 })
 
--- Crash Recovery Logic
-MainTab:CreateToggle({
-   Name = "Auto-Flip / Crash Recovery",
-   CurrentValue = false,
-   Flag = "AutoFlipToggle",
-   Callback = function(Value)
-      autoFlipActive = Value
-      if Value then
-         task.spawn(function()
-            while autoFlipActive do
-               task.wait(0.5)
-               local char = player.Character
-               if char and char:FindFirstChild("HumanoidRootPart") then
-                  local hrp = char.HumanoidRootPart
-                  local rx, ry, rz = hrp.CFrame:ToEulerAnglesXYZ()
-                  if math.abs(math.deg(rx)) > 70 or math.abs(math.deg(rz)) > 70 then
-                     hrp.CFrame = CFrame.new(hrp.Position) * CFrame.Angles(0, ry, 0) + Vector3.new(0, 3, 0)
-                  end
-               end
-            end
-         end)
-      end
-   end,
-})
-
 -- 0-Gravity Trick Farmer Logic
 local function start0GravityStunts()
    task.spawn(function()
@@ -144,7 +118,7 @@ local function start0GravityStunts()
          VirtualInputManager:SendKeyEvent(true, chosenKey, false, game)
          
          -- 4. Hold spin for 20 seconds
-         for i = 1, 200 do
+         for i = 1, 100 do
             if not stuntFarmActive then break end
             task.wait(0.1)
          end
